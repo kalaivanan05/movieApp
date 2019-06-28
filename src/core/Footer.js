@@ -1,6 +1,6 @@
 
 import React from 'react';
-// importing style for header
+// importing style for footer
 import footerStyle from '../web/footerStyle';
 
 function Footer(props) {

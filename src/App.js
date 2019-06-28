@@ -15,11 +15,21 @@ class App extends React.Component {
     this.getResult = this.getResult.bind(this);
   } 
 
-
   //Initial API fetch
   componentDidMount() {
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=fa281222&&s=Batman`)
+    const url = "http://www.omdbapi.com/?i=tt3896198&apikey=fa281222&&s=Batman";
+    this.fetchFromAPI(url);      
+  }
 
+  // user searching particular movie
+  getResult(value) {
+    const searchUrl = `http://www.omdbapi.com/?i=tt3896198&apikey=fa281222&&s=${value}`;
+    this.fetchFromAPI(searchUrl);
+  }
+
+  // fetch value from API
+  fetchFromAPI(url) {
+    fetch(url)
     .then(res => res.json())
     .then(result => {
       console.log(result);
@@ -28,22 +38,8 @@ class App extends React.Component {
     .catch(error => {
       alert("something went wrong");
     })
-      
   }
 
-  // user searching particular movie
-  getResult(value) {
-
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=fa281222&&s=${value}`)
-
-    .then(res => res.json())
-    .then(result => {
-      this.setState({movieData: result.Search, totalResults: result.totalResults});
-    })
-    .catch(error => {
-      alert("something went wrong");
-    })
-  }
 
   render() {
     return (
